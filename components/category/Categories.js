@@ -6,13 +6,11 @@ import CategoriesCard from "./CategoriesCard";
 
 const Categories = () => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state?.data?.categories);
+  const card = useSelector((state) => state?.datas?.categories);
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
-
-  console.log(card)
 
   return (
     <ScrollView

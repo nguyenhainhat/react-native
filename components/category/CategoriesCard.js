@@ -1,5 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import { urlFor } from "../../sanity";
 
 const CategoriesCard = ({imgUrl, title}) => {
   return (
@@ -9,6 +10,7 @@ const CategoriesCard = ({imgUrl, title}) => {
         backgroundColor: "white",
         borderRadius: 5,
         marginRight: 8,
+        marginBottom: 10,
         overflow: "hidden",
       }}
     >

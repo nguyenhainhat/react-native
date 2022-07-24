@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -25,9 +25,17 @@ import {
   UserIcon,
 } from "react-native-heroicons/outline";
 import Categories from "../../../components/category/Categories";
+import { useDispatch, useSelector } from "react-redux";
+import FeatureRow from "../../../components/feature/FeatureRow";
+import { getRestaurant } from "../../../redux/data";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const restaurantData = useSelector((state) => state.datas.restaurant);
+  useEffect(() => {
+    dispatch(getRestaurant());
+  }, [dispatch]);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -65,9 +73,21 @@ const HomeScreen = () => {
       </ViewSearch>
 
       {/* Body */}
-      <ScrollView style={{ backgroundColor: "gray" }}>
+      <ScrollView style={{ backgroundColor: "rgb(243, 244, 246)" }}>
         {/* Categories */}
         <Categories />
+        {/* Featured Rows */}
+        {restaurantData?.result?.map((item, index) => (
+          <FeatureRow
+            id={item._id}
+            title={item.name}
+            description={item.short_description}
+            featuredCategory="featured"
+            restaurants={item.restaurants}
+            key={item._id}
+          />
+        ))}
+        {/* Featured Rows */}
       </ScrollView>
     </SafeAreaView>
   );

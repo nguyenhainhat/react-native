@@ -2,11 +2,11 @@ import styled from "styled-components/native";
 
 export const ContainerLogo = styled.View`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding: 8px;
-  gap: 0.4rem;
+  padding: 20px 8px;
+  gap: 10px;
 `;
 
 // export const ContainerTitle = styled.View`
@@ -23,17 +23,18 @@ export const Logo = styled.Image`
   width: 30px;
   padding: 4px;
   border-radius: 20px;
+  margin-right: 6px;
 `;
 
 export const TitleLogo = styled.Text`
   color: gray;
-  font-size: 0.8rem;
-  line-height: 0.8rem;
+  font-size: 14px;
+  line-height: 14px;
 `;
 
 export const TitleLocation = styled.Text`
   color: black;
-  font-size: 1.2rem;
+  font-size: 18px;
   font-weight: 700;
 `;
 
@@ -42,7 +43,7 @@ export const ImageUser = styled.Image``;
 export const ViewSearch = styled.View`
   flex-direction: row;
   align-items: center;
-  padding-bottom: 8px;
+  padding-bottom: 28px;
 `;
 
 export const ViewSearchContainer = styled.View`
