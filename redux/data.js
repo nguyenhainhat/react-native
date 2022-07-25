@@ -31,4 +31,4 @@ export const datasSlice = createSlice({
 })
 
 
-export default datasSlice?.reducer
+export default datasSlice.reducer

@@ -6,7 +6,7 @@ import { TextDesc } from "./style";
 
 const FeatureRow = ({ title, description, featuredCategory, restaurants }) => {
   return (
-    <View style={{ marginBottom: 60 }}>
+    <View style={{ marginBottom: 20 }}>
       <View
         style={{
           marginTop: 12,
@@ -34,7 +34,11 @@ const FeatureRow = ({ title, description, featuredCategory, restaurants }) => {
             title={item.name}
             rating={item.rating}
             genre={item.type.name}
-            address={item.address}
+            // address={item.address}
+            short_desc={item.short_description}
+            dishes={item.dishes}
+            long={item.long}
+            lat={item.lat}
             key={item._id}
           />
         ))}

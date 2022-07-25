@@ -41,6 +41,7 @@ const HomeScreen = () => {
       headerShown: false,
     });
   }, []);
+
   return (
     <SafeAreaView style={{ backgroundColor: "white", paddingTop: 5 }}>
       <ContainerLogo>

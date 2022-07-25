@@ -7,7 +7,7 @@ import { urlFor } from '../../sanity';
 
 const FoodCard = (props) => {
     const {
-         imgUrl, title, rating, genre, address
+         imgUrl, title, rating, genre, address, dishes
     } = props
     const navigation = useNavigation()
 
@@ -15,7 +15,7 @@ const FoodCard = (props) => {
     <TouchableOpacity style={{backgroundColor:"white", borderRadius:5, overflow:'hidden', marginRight:18}}
         onPress={()=>{
             navigation.navigate("Restaurant", {
-                imgUrl, title, rating, genre, address
+                imgUrl, title, rating, genre, address, dishes
             })
         }}
     >
