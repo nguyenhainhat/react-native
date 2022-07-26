@@ -157,14 +157,19 @@ const BasketScreen = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: "normal" }}>Tổng giá: </Text>
+            <Text style={{ fontSize: 20, fontWeight: "normal" }}>
+              Tổng giá:{" "}
+            </Text>
             <Text>
               <FormatNumber value={basketTotal} />
             </Text>
           </View>
-          <View>
-            <Button title="Thanh Toán">Thanh Toán</Button>
-          </View>
+          <Button
+            onPress={() => navigation.navigate("PreparingOrderScreen")}
+            title="Thanh Toán"
+          >
+            Thanh Toán
+          </Button>
         </View>
       </View>
     </SafeAreaView>
