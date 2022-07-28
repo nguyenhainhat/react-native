@@ -52,4 +52,5 @@ export const ViewSearchContainer = styled.View`
   align-items: center;
   background-color: rgb(229 ,231 ,235);
   padding: 10px;
+  border-radius: 6px;
 `;

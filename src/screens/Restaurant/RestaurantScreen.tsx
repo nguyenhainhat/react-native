@@ -124,7 +124,7 @@ const RestaurantScreen = () => {
               >
                 <LocationMarkerIcon color="gray" opacity={0.4} size={20} />
                 <Text style={{ fontSize: 12, color: "#6b7280" }}>
-                  Nearby {address}
+                   {address}
                 </Text>
               </View>
             </View>

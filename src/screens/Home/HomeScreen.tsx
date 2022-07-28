@@ -35,6 +35,7 @@ interface RestaurantResult {
   name: String | undefined;
   short_description: String | undefined;
   restaurants: Array<RestaurantRows>;
+  address: String  | undefined;
 };
 
 const HomeScreen = () => {
@@ -58,7 +59,6 @@ const HomeScreen = () => {
             uri: "https://www.iconlogovector.com/uploads/image/2022/01/shopee.png",
           }}
         />
-
         <View style={{ flex: 1 }}>
           <TitleLogo>Lazada</TitleLogo>
           <TitleLocation>
@@ -72,10 +72,11 @@ const HomeScreen = () => {
 
       <ViewSearch>
         <ViewSearchContainer>
-          <SearchIcon color="gray" size={20} />
+          <SearchIcon color="gray" size={20} style={{marginRight: 10}} />
           <TextInput
             placeholder="Restaurants and cuisines"
             keyboardType="default"
+            style={{fontSize: 14}}
           />
         </ViewSearchContainer>
         <AdjustmentsIcon color="#00CCBB" />
@@ -93,6 +94,7 @@ const HomeScreen = () => {
             featuredCategory="featured"
             description={item.short_description}
             restaurants={item.restaurants}
+            address={item.address}
             key={item._id}
           />
         ))}

@@ -11,6 +11,7 @@ interface PropsRows {
   description: String;
   featuredCategory: String;
   restaurants: Array<RestaurantRows>;
+  address: String
 }
 
 const FeatureRow = ({
@@ -19,6 +20,7 @@ const FeatureRow = ({
   description,
   featuredCategory,
   restaurants,
+  address,
 }: PropsRows) => {
   return (
     <View style={{ marginBottom: 20 }}>
@@ -37,11 +39,8 @@ const FeatureRow = ({
       <TextDesc>{description}</TextDesc>
       <ScrollView
         horizontal
-        contentContainerStyle={{
-          paddingHorizontal: 15,
-        }}
         showsHorizontalScrollIndicator={false}
-        style={{ paddingTop: 16 }}
+        style={{ paddingTop: 16, paddingLeft: 8 }}
       >
         {restaurants?.map((item) => (
           <FoodCard
@@ -49,14 +48,13 @@ const FeatureRow = ({
             title={item.name}
             rating={item.rating}
             genre={item.type.name}
-            // address={item.address}
+            address={item.address}
             short_desc={item.short_description}
             dishes={item.dishes}
             long={item.long}
             lat={item.lat}
             key={item._id}
             id={undefined}
-            address={undefined}
             result={[]}
           />
         ))}

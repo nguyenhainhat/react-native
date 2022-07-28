@@ -59,8 +59,7 @@ const DishRow = ({ id, name, desc, price, imgUrl, index, dishesLength }) => {
       </View>
       {isPress && (
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {items?.length > 0 && (
+          <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
               <TouchableOpacity
                 style={{
                   padding: 2,
@@ -68,13 +67,14 @@ const DishRow = ({ id, name, desc, price, imgUrl, index, dishesLength }) => {
                   marginRight: 8,
                   borderRadius: 4,
                 }}
+                disabled={items?.length > 0 ? false : true}
                 onPress={removeItemToBasket}
               >
                 <MinusCircleIcon color="#fff" size={18} />
               </TouchableOpacity>
-            )}
+          
 
-            {items?.length > 0 && <Text>{items?.length}</Text>}
+            <Text>{items?.length > 0 ? items?.length: 0}</Text>
 
             <TouchableOpacity
               style={{

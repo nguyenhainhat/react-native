@@ -72,7 +72,7 @@ const FoodCard = (props: RestaurantState) => {
             style={{ marginRight: 6 }}
           />
           <Text style={{ fontSize: 14, color: "rgb(107, 114, 128)" }}>
-            Nearby {address}
+            {address}
           </Text>
         </View>
       </View>

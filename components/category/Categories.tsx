@@ -17,7 +17,7 @@ const Categories = () => {
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: 15, paddingTop: 10 }}
+      contentContainerStyle={{ paddingLeft: 8, paddingTop: 20 }}
     >
       {card?.result?.map((item, index) => (
         <CategoriesCard

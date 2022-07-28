@@ -145,11 +145,41 @@ const BasketScreen = () => {
 
         <View
           style={{
-            backgroundColor: "#00CCBB",
+            backgroundColor: "#86efe6",
             paddingVertical: 20,
             paddingHorizontal: 20,
           }}
         >
+          <View
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "normal" }}>
+              Tổng giá các món ăn:
+            </Text>
+            <Text>
+              <FormatNumber value={basketTotal}/>
+            </Text>
+          </View>
+          <View
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "normal" }}>
+              Phí vận chuyển:
+            </Text>
+            <Text>
+              <FormatNumber value="20,000 VND" />
+            </Text>
+          </View>
           <View
             style={{
               marginBottom: 20,
@@ -158,11 +188,11 @@ const BasketScreen = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: "normal" }}>
+            <Text style={{ fontSize: 16, fontWeight: "normal" }}>
               Tổng giá:{" "}
             </Text>
             <Text>
-              <FormatNumber value={basketTotal} />
+              <FormatNumber value={basketTotal + 20000} />
             </Text>
           </View>
           <Button
