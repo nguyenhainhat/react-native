@@ -24,11 +24,12 @@ import {
 } from "../../../redux/basketSlice";
 import { selectRestaurants } from "../../../redux/restaurantSlice";
 import { FormatNumber } from "../../../components/NumberFormat";
+import { ScreenNavigation } from "../../../hooks";
 
 const BasketScreen = () => {
   const [groupItemsInBasket, setGroupItemsInBasket] = useState([]);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigation>();
   const restaurant = useSelector(selectRestaurants);
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);

@@ -22,7 +22,7 @@ const DishRow = ({ id, name, desc, price, imgUrl, index, dishesLength }) => {
     dispatch(addToBasket({ id, name, desc, price, imgUrl }));
   };
   const removeItemToBasket = () => {
-    if (!items.length > 0) return;
+    if (items.length < 0) return;
 
     dispatch(removeFromBasket({ id }));
   };
@@ -66,7 +66,7 @@ const DishRow = ({ id, name, desc, price, imgUrl, index, dishesLength }) => {
                   padding: 2,
                   backgroundColor: "#00CCBB",
                   marginRight: 8,
-                  borderRadius: 4
+                  borderRadius: 4,
                 }}
                 onPress={removeItemToBasket}
               >
@@ -77,7 +77,12 @@ const DishRow = ({ id, name, desc, price, imgUrl, index, dishesLength }) => {
             {items?.length > 0 && <Text>{items?.length}</Text>}
 
             <TouchableOpacity
-              style={{ padding: 2, backgroundColor: "#00CCBB", marginLeft: 8 , borderRadius: 4}}
+              style={{
+                padding: 2,
+                backgroundColor: "#00CCBB",
+                marginLeft: 8,
+                borderRadius: 4,
+              }}
               onPress={addItemToBasket}
             >
               <PlusCircleIcon color="#fff" size={18} />

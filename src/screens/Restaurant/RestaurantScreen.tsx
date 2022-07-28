@@ -1,6 +1,6 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect, useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import {
   ArrowLeftIcon,
@@ -16,6 +16,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBasketItems } from "../../../redux/basketSlice";
 import BasketIcon from "../../../components/basketIcon/BasketIcon";
 import { setRestaurant } from "../../../redux/restaurantSlice";
+import { useAppSelector } from "../../../hooks";
+import { RestaurantState } from "../../../type.d";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParams } from "../../../App";
+
+
+export type RootRouteProps<RouteName extends keyof RootStackParams["Restaurant"]> = RouteProp<
+RootStackParams,
+RootStackParams["Restaurant"]["RestaurantState"]
+>;
 
 const RestaurantScreen = () => {
   const {
@@ -31,30 +41,21 @@ const RestaurantScreen = () => {
       long,
       lat,
     },
-  } = useRoute();
+  } = useRoute<RootRouteProps<"RestaurantState">>();
+
   const navigation = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
-  const items = useSelector((state) => state.basket.items);
+  const items = useAppSelector((state) => state.basket.items);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
-      setRestaurant({
-        id,
-        imgUrl,
-        title,
-        rating,
-        genre,
-        address,
-        short_desc,
-        dishes,
-        long,
-        lat,
-      })
+      setRestaurant({ id, imgUrl, title, rating, genre, address, short_desc, dishes, long, lat} )
     );
   }, [dispatch]);
 
@@ -102,9 +103,14 @@ const RestaurantScreen = () => {
                     imageSize={18}
                     readonly={true}
                     startingValue={rating}
-                    
                   />
-                  <Text style={{ fontSize: 12, color: "rgb(107 ,114, 128)",  marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "rgb(107 ,114, 128)",
+                      marginLeft: 10,
+                    }}
+                  >
                     {genre}
                   </Text>
                 </View>

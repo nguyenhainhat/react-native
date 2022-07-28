@@ -6,7 +6,12 @@ import restaurantReducer from "../redux/restaurantSlice";
 export const store = configureStore({
   reducer: {
     datas: datasReducer,
+    restaurant: restaurantReducer,
     basket: basketReducer,
-    restaurant: restaurantReducer
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch;
+

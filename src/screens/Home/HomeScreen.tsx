@@ -9,10 +9,8 @@ import {
   ScrollView,
 } from "react-native";
 import {
-  Container,
   ContainerLogo,
   Logo,
-  Title,
   TitleLocation,
   TitleLogo,
   ViewSearch,
@@ -28,11 +26,21 @@ import Categories from "../../../components/category/Categories";
 import { useDispatch, useSelector } from "react-redux";
 import FeatureRow from "../../../components/feature/FeatureRow";
 import { getRestaurant } from "../../../redux/data";
+import { AppDispatch, RootState } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { RestaurantRows } from "../../../type.d";
+
+interface RestaurantResult {
+  _id: string;
+  name: String | undefined;
+  short_description: String | undefined;
+  restaurants: Array<RestaurantRows>;
+};
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const restaurantData = useSelector((state) => state.datas.restaurant);
+  const dispatch = useAppDispatch();
+  const restaurantData: any = useAppSelector((state: RootState) => state.datas.restaurant);
   useEffect(() => {
     dispatch(getRestaurant());
   }, [dispatch]);
@@ -78,12 +86,12 @@ const HomeScreen = () => {
         {/* Categories */}
         <Categories />
         {/* Featured Rows */}
-        {restaurantData?.result?.map((item, index) => (
+        {restaurantData?.result?.map((item: RestaurantResult) => (
           <FeatureRow
             id={item._id}
             title={item.name}
-            description={item.short_description}
             featuredCategory="featured"
+            description={item.short_description}
             restaurants={item.restaurants}
             key={item._id}
           />

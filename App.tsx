@@ -8,8 +8,18 @@ import RestaurantScreen from "./src/screens/Restaurant/RestaurantScreen";
 import BasketScreen from "./src/screens/Basket/BasketScreen";
 import PreparingOrderScreen from "./src/screens/PreparingOrder/PreparingOrderScreen";
 import DeliveryScreen from "./src/screens/Delivery/DeliveryScreen";
+import { RestaurantState } from "./type.d";
 
-const Stack = createNativeStackNavigator();
+
+export type RootStackParams = {
+  Home,
+  Restaurant: {RestaurantState, onPress: () => void}
+  Basket,
+  PreparingOrderScreen : {onPress: () => void},
+  Delivery,
+}
+
+const Stack = createNativeStackNavigator<RootStackParams>();
 
 export default function App() {
   return (

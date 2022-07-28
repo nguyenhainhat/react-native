@@ -4,10 +4,12 @@ import { StarIcon, LocationMarkerIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { urlFor } from "../../sanity";
+import { RestaurantScreenNavigation } from "../../hooks";
+import { RestaurantState } from "../../type.d";
 
-const FoodCard = (props) => {
+const FoodCard = (props: RestaurantState) => {
   const { imgUrl, title, rating, genre, address, dishes, long, lat,id } = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<RestaurantScreenNavigation>();
 
   return (
     <TouchableOpacity

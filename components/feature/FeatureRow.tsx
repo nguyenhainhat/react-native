@@ -3,8 +3,23 @@ import React from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import FoodCard from "../foodCard/FoodCard";
 import { TextDesc } from "./style";
+import { RestaurantRows } from "../../type.d";
 
-const FeatureRow = ({ title, description, featuredCategory, restaurants }) => {
+interface PropsRows {
+  id: String;
+  title: String;
+  description: String;
+  featuredCategory: String;
+  restaurants: Array<RestaurantRows>;
+}
+
+const FeatureRow = ({
+  id,
+  title,
+  description,
+  featuredCategory,
+  restaurants,
+}: PropsRows) => {
   return (
     <View style={{ marginBottom: 20 }}>
       <View
@@ -40,6 +55,9 @@ const FeatureRow = ({ title, description, featuredCategory, restaurants }) => {
             long={item.long}
             lat={item.lat}
             key={item._id}
+            id={undefined}
+            address={undefined}
+            result={[]}
           />
         ))}
       </ScrollView>

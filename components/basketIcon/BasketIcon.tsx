@@ -10,13 +10,14 @@ import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { FormatNumber } from "../NumberFormat";
+import { ScreenNavigation } from "../../hooks";
 
 const windowWidth = Dimensions.get("window").width;
 
 const BasketIcon = () => {
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigation>();
 
   return (
     <View

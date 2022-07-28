@@ -13,12 +13,11 @@ import { XIcon } from "react-native-heroicons/solid";
 import * as Progress from "react-native-progress";
 import { Bar } from "react-native-progress";
 import MapView from "react-native-maps";
+import { ScreenNavigation } from "../../../hooks";
 
 const DeliveryScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigation>();
   const restaurant = useSelector(selectRestaurants);
-
-  console.log(restaurant);
 
   return (
     <View style={{ backgroundColor: "#00CCBB", flex: 1, paddingTop: 16 }}>

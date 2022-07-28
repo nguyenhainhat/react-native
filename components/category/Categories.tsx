@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../redux/data";
 import CategoriesCard from "./CategoriesCard";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const Categories = () => {
-  const dispatch = useDispatch();
-  const card = useSelector((state) => state?.datas?.categories);
+  const dispatch = useAppDispatch();
+  const card = useAppSelector((state) => state?.datas?.categories);
 
   useEffect(() => {
     dispatch(getCategories());

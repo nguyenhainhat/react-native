@@ -3,16 +3,19 @@ import React, { useEffect } from "react";
 import * as Animatable from "react-native-animatable";
 import * as Progress from "react-native-progress";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParams } from "../../../App";
+import { ScreenNavigation } from "../../../hooks";
 
 const PreparingOrderScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigation>();
 
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Delivery");
     }, 4000);
   }, []);
-
+  
   return (
     <SafeAreaView
       style={{
