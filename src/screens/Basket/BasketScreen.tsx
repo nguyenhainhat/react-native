@@ -43,7 +43,7 @@ const BasketScreen = () => {
   }, [items]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, marginTop: 12 }}>
       <View style={{ flex: 1, backgroundColor: "#f3f4f6" }}>
         <View
           style={{

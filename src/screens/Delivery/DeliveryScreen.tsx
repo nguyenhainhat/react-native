@@ -12,7 +12,7 @@ import { selectRestaurants } from "../../../redux/restaurantSlice";
 import { XIcon } from "react-native-heroicons/solid";
 import * as Progress from "react-native-progress";
 import { Bar } from "react-native-progress";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { ScreenNavigation } from "../../../hooks";
 
 const DeliveryScreen = () => {
@@ -75,21 +75,29 @@ const DeliveryScreen = () => {
       </SafeAreaView>
       <MapView
         initialRegion={{
-          latitude: restaurant.lat,
-          longitude: restaurant.long,
+          latitude: 10.981825,
+          longitude: 106.7848514,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
         mapType="mutedStandard"
         style={{ flex: 1, marginTop: -40, zIndex: 0 }}
-      ></MapView>
+      >
+        <Marker
+          coordinate={{
+            latitude: 10.981825,
+            longitude: 106.7848514,
+          }}
+          title={restaurant.title}
+        />
+      </MapView>
       <SafeAreaView
         style={{
           backgroundColor: "white",
           flexDirection: "row",
           padding: 10,
           height: 80,
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <Image

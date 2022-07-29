@@ -44,6 +44,8 @@ export const ViewSearch = styled.View`
   flex-direction: row;
   align-items: center;
   padding-bottom: 28px;
+  padding-left: 8px;
+  padding-right: 8px;
 `;
 
 export const ViewSearchContainer = styled.View`
