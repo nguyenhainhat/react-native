@@ -18,10 +18,10 @@ export const basketSlice = createSlice({
   name: "basket",
   initialState: initialStates,
   reducers: {
-    addToBasket: (state: RootState, action: PayloadAction<initialStateType>) => {
+    addToBasket: (state: typeof initialStates, action: PayloadAction<initialStateType>) => {
       state.items.push(action.payload);
     },
-    removeFromBasket: (state: RootState, action: PayloadAction<{ id: string }>) => {
+    removeFromBasket: (state: typeof initialStates, action: PayloadAction<{ id: string }>) => {
       const index = state.items.findIndex(
         (item: any) => item.id === action.payload.id
       );

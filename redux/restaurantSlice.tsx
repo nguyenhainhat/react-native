@@ -18,7 +18,7 @@ export const restaurantSlice = createSlice({
   name: 'restaurant',
   initialState: initialStates,
   reducers: {
-    setRestaurant: (state: RootState, action: PayloadAction<initialStateType>) => {
+    setRestaurant: (state: typeof initialStates, action: PayloadAction<initialStateType>) => {
         state.restaurant = action.payload
     },
     
