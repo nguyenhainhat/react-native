@@ -24,18 +24,18 @@ import {
 } from "../../../redux/basketSlice";
 import { selectRestaurants } from "../../../redux/restaurantSlice";
 import { FormatNumber } from "../../../components/NumberFormat";
-import { ScreenNavigation } from "../../../hooks";
+import { ScreenNavigation, useAppSelector } from "../../../hooks";
 
 const BasketScreen = () => {
-  const [groupItemsInBasket, setGroupItemsInBasket] = useState([]);
+  const [groupItemsInBasket, setGroupItemsInBasket] = useState<any>([]);
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigation>();
-  const restaurant = useSelector(selectRestaurants);
+  const restaurant = useAppSelector(selectRestaurants);
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
 
   useEffect(() => {
-    const groupItems = items.reduce((result, item) => {
+    const groupItems = items.reduce((result, item: any) => {
       (result[item.id] = result[item.id] || []).push(item);
       return result;
     }, {});
@@ -101,7 +101,7 @@ const BasketScreen = () => {
         </View>
 
         <ScrollView>
-          {Object.entries(groupItemsInBasket).map(([key, items]) => (
+          {Object.entries(groupItemsInBasket).map(([key, items]: any) => (
             <View
               key={key}
               style={{

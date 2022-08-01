@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { AnyAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store';
 import { RestaurantState } from '../type.d';
 
@@ -18,7 +18,7 @@ export const restaurantSlice = createSlice({
   name: 'restaurant',
   initialState: initialStates,
   reducers: {
-    setRestaurant: (state: typeof initialStates, action: PayloadAction<initialStateType>) => {
+    setRestaurant: (state: typeof initialStates, action: PayloadAction<{}>) => {
         state.restaurant = action.payload
     },
     

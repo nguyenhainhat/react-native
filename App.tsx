@@ -9,9 +9,11 @@ import BasketScreen from "./src/screens/Basket/BasketScreen";
 import PreparingOrderScreen from "./src/screens/PreparingOrder/PreparingOrderScreen";
 import DeliveryScreen from "./src/screens/Delivery/DeliveryScreen";
 import { RestaurantState } from "./type.d";
+import LoginScreen from "./src/screens/Login/LoginScreen";
 
 
 export type RootStackParams = {
+  Login,
   Home,
   Restaurant: {RestaurantState, onPress: () => void}
   Basket,
@@ -26,6 +28,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} options={{ presentation: "modal", headerShown: false }} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
           <Stack.Screen
