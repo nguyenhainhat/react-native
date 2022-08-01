@@ -18,24 +18,18 @@ import * as SecureStore from 'expo-secure-store';
 const { width, height } = Dimensions.get("window");
 
 const number = [
-  { num: 1, key: 1 },
-  { num: 2, key: 2 },
-  { num: 3, key: 3 },
-  { num: 4, key: 4 },
-  { num: 5, key: 5 },
-  { num: 6, key: 6 },
-  { num: 7, key: 7 },
-  { num: 8, key: 8 },
-  { num: 9, key: 9 },
-  { num: 0, key: 0 },
+  { num: 1 },
+  { num: 2 },
+  { num: 3 },
+  { num: 4 },
+  { num: 5 },
+  { num: 6 },
+  { num: 7 },
+  { num: 8 },
+  { num: 9 },
+  { num: 0 },
 ];
 
-const passcode = [
-  { num: 1, key: 1 },
-  { num: 2, key: 2 },
-  { num: 3, key: 3 },
-  { num: 4, key: 4 },
-];
 
 function LoginScreen() {
   const [pass, setPass] = React.useState<any>(["", "", "", ""]);
@@ -147,7 +141,7 @@ function LoginScreen() {
         >
           {number.map((item) => (
             <TouchableOpacityItem
-              key={item.key}
+              key={item.num}
               onPress={() => handleOnPressNumber(item.num)}
             >
               <Text
