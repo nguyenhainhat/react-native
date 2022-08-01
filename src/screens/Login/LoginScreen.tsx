@@ -13,6 +13,7 @@ import { TouchableOpacityItem } from "./style";
 import { XIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigation } from "../../../hooks";
+import * as SecureStore from 'expo-secure-store';
 
 const { width, height } = Dimensions.get("window");
 
@@ -42,7 +43,7 @@ function LoginScreen() {
   const passWord = 1234;
   const navigation = useNavigation<ScreenNavigation>();
 
-  const handleOnPressNumber = (num: any) => {
+  const handleOnPressNumber = async(num: any) => {
     let passCode = pass;
     for (let index = 0; index < passCode.length; index++) {
       if (passCode[index] == "") {
@@ -69,17 +70,22 @@ function LoginScreen() {
     setMatch("");
   };
 
+  // Encode and Save
   React.useEffect(() => {
     (async () => {
       const passWordEnter = Number(pass.toString().split(",").join(""));
+      await SecureStore.setItemAsync('passCode', passWordEnter.toString());
+      await SecureStore.setItemAsync('passedCode', passWord.toString());
+      const storePass = await SecureStore.getItemAsync('passCode');
+      const storePassedCode = await SecureStore.getItemAsync('passedCode');
       const digestPass = await Crypto.digestStringAsync(
         Crypto.CryptoDigestAlgorithm.SHA256,
-        passWord.toString()
+        storePassedCode.toString()
       );
-      if (passWordEnter.toString().length === 4) {
+      if (storePass.toString().length === 4) {
         const digestPassword = await Crypto.digestStringAsync(
           Crypto.CryptoDigestAlgorithm.SHA256,
-          passWordEnter.toString()
+          storePass.toString()
         );
         if (digestPass === digestPassword) {
           setMatch("match");
