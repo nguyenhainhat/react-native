@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import {
   ContainerLogo,
@@ -27,21 +28,24 @@ import { useDispatch, useSelector } from "react-redux";
 import FeatureRow from "../../../components/feature/FeatureRow";
 import { getRestaurant } from "../../../redux/data";
 import { AppDispatch, RootState } from "../../../store/store";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { ScreenNavigation, useAppDispatch, useAppSelector } from "../../../hooks";
 import { RestaurantRows } from "../../../type.d";
+import * as SecureStore from "expo-secure-store";
 
 interface RestaurantResult {
   _id: string;
   name: String | undefined;
   short_description: String | undefined;
   restaurants: Array<RestaurantRows>;
-  address: String  | undefined;
-};
+  address: String | undefined;
+}
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigation>();
   const dispatch = useAppDispatch();
-  const restaurantData: any = useAppSelector((state: RootState) => state.datas.restaurant);
+  const restaurantData: any = useAppSelector(
+    (state: RootState) => state.datas.restaurant
+  );
   useEffect(() => {
     dispatch(getRestaurant());
   }, [dispatch]);
@@ -50,6 +54,7 @@ const HomeScreen = () => {
       headerShown: false,
     });
   }, []);
+
 
   return (
     <SafeAreaView style={{ backgroundColor: "white", paddingTop: 5 }}>
@@ -66,17 +71,18 @@ const HomeScreen = () => {
             <ChevronDownIcon size={20} color="#00CCBB" />
           </TitleLocation>
         </View>
-
-        <UserIcon size={35} color="#00CCBB" />
+        <TouchableOpacity>
+          <UserIcon size={35} color="#00CCBB" />
+        </TouchableOpacity>
       </ContainerLogo>
 
       <ViewSearch>
         <ViewSearchContainer>
-          <SearchIcon color="gray" size={20} style={{marginRight: 10}} />
+          <SearchIcon color="gray" size={20} style={{ marginRight: 10 }} />
           <TextInput
             placeholder="Restaurants and cuisines"
             keyboardType="default"
-            style={{fontSize: 14}}
+            style={{ fontSize: 14 }}
           />
         </ViewSearchContainer>
         <AdjustmentsIcon color="#00CCBB" />

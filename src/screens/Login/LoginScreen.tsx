@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import * as Crypto from "expo-crypto";
 import { TouchableOpacityItem } from "./style";
-import { XIcon } from "react-native-heroicons/solid";
+import { ChevronDoubleLeftIcon, XIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigation } from "../../../hooks";
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
 
 const { width, height } = Dimensions.get("window");
 
@@ -27,17 +27,16 @@ const number = [
   { num: 7 },
   { num: 8 },
   { num: 9 },
-  { num: 0 },
+  // { num: 0 },
 ];
-
 
 function LoginScreen() {
   const [pass, setPass] = React.useState<any>(["", "", "", ""]);
   const [match, setMatch] = React.useState<string>("");
-  const passWord = 1234;
+  // const passWord = 1234;
   const navigation = useNavigation<ScreenNavigation>();
 
-  const handleOnPressNumber = async(num: any) => {
+  const handleOnPressNumber = async (num: any) => {
     let passCode = pass;
     for (let index = 0; index < passCode.length; index++) {
       if (passCode[index] == "") {
@@ -64,24 +63,24 @@ function LoginScreen() {
     setMatch("");
   };
 
+  const handlePrevScreen = async() => {
+    await SecureStore.deleteItemAsync("passedCode")
+    navigation.navigate("Setup")
+  }
+
   // Encode and Save
   React.useEffect(() => {
     (async () => {
       const passWordEnter = Number(pass.toString().split(",").join(""));
-      await SecureStore.setItemAsync('passCode', passWordEnter.toString());
-      await SecureStore.setItemAsync('passedCode', passWord.toString());
-      const storePass = await SecureStore.getItemAsync('passCode');
-      const storePassedCode = await SecureStore.getItemAsync('passedCode');
-      const digestPass = await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.SHA256,
-        storePassedCode.toString()
-      );
+      await SecureStore.setItemAsync("passCode", passWordEnter.toString());
+      const storePass = await SecureStore.getItemAsync("passCode");
+      const storePassedCode = await SecureStore.getItemAsync("passedCode");
       if (storePass.toString().length === 4) {
         const digestPassword = await Crypto.digestStringAsync(
           Crypto.CryptoDigestAlgorithm.SHA256,
           storePass.toString()
         );
-        if (digestPass === digestPassword) {
+        if (storePassedCode === digestPassword) {
           setMatch("match");
           setTimeout(() => {
             navigation.navigate("Home");
@@ -151,6 +150,14 @@ function LoginScreen() {
               </Text>
             </TouchableOpacityItem>
           ))}
+          <TouchableOpacityItem onPress={handlePrevScreen}>
+            <ChevronDoubleLeftIcon color="white" />
+          </TouchableOpacityItem>
+          <TouchableOpacityItem onPress={() => handleOnPressNumber(0)}>
+            <Text style={{ fontSize: 20, color: "white", textAlign: "center" }}>
+              0
+            </Text>
+          </TouchableOpacityItem>
           <TouchableOpacityItem onPress={handleOnPressCancel}>
             <XIcon color="white" />
           </TouchableOpacityItem>
